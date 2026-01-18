@@ -121,9 +121,14 @@ const Login = ({ onLogin }) => {
           </button>
 
           <div className="text-center">
-            <a href="#" className="text-sm text-indigo-600 hover:text-indigo-800 font-medium">
-              Forgot Password?
-            </a>
+            <button
+                type="button"
+                onClick={() => alert('Password reset feature coming soon!')}
+                className="text-sm text-indigo-600 hover:text-indigo-800 font-medium underline"
+            >
+                Forgot Password?
+            </button>
+            
           </div>
         </div>
       </div>

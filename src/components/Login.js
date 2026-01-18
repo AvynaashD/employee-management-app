@@ -12,7 +12,6 @@ const Login = ({ onLogin }) => {
     setLoading(true);
 
     try {
-      // Fetch employee with matching username
       const { data: employees, error: fetchError } = await supabase
         .from('employees')
         .select('*')
@@ -32,10 +31,7 @@ const Login = ({ onLogin }) => {
 
       const employee = employees[0];
 
-      // For demo purposes, password is stored as plain text
-      // In production, you should hash passwords
       if (employee.password === password) {
-        // Successful login
         onLogin({
           id: employee.id,
           tenantId: employee.tenant_id,
@@ -66,7 +62,6 @@ const Login = ({ onLogin }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
-        {/* Company Logo/Name Placeholder */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4">
             <span className="text-white text-3xl font-bold">EMS</span>
@@ -121,14 +116,13 @@ const Login = ({ onLogin }) => {
           </button>
 
           <div className="text-center">
-            <button
-                type="button"
-                onClick={() => alert('Password reset feature coming soon!')}
-                className="text-sm text-indigo-600 hover:text-indigo-800 font-medium underline"
+            <button 
+              type="button"
+              onClick={() => alert('Password reset feature coming soon!')}
+              className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
             >
-                Forgot Password?
+              Forgot Password?
             </button>
-            
           </div>
         </div>
       </div>

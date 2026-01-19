@@ -113,7 +113,7 @@ const Employees = ({ user }) => {
   };
 
   const validateEmail = (email) => {
-    if (!email) return true; // Email is optional
+    if (!email) return true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -123,7 +123,6 @@ const Employees = ({ user }) => {
   };
 
   const handleAddEmployee = async () => {
-    // Validation
     if (!newEmployee.firstName || !newEmployee.lastName) {
       alert('First name and last name are required');
       return;
@@ -158,7 +157,7 @@ const Employees = ({ user }) => {
         username: newEmployee.username,
         email: newEmployee.email || null,
         phone: newEmployee.phone,
-        password: newEmployee.username, // Default password is username
+        password: newEmployee.username,
         role: newEmployee.role,
         bcode: newEmployee.bcode,
         pto_balance: 15
@@ -190,7 +189,6 @@ const Employees = ({ user }) => {
       return;
     }
 
-    // Generate new username if name changed
     let username = editedEmployee.username;
     if (editedEmployee.first_name !== selectedEmployee.first_name || 
         editedEmployee.last_name !== selectedEmployee.last_name) {
@@ -354,7 +352,6 @@ const Employees = ({ user }) => {
         )}
       </div>
 
-      {/* Add Employee Modal */}
       {showAddModal && (
         <>
           <div 
@@ -518,7 +515,6 @@ const Employees = ({ user }) => {
         </>
       )}
 
-      {/* Exit Confirmation Modal */}
       {showExitConfirm && (
         <>
           <div className="fixed inset-0 bg-black bg-opacity-60 z-50" />
@@ -543,7 +539,6 @@ const Employees = ({ user }) => {
         </>
       )}
 
-      {/* Employee Detail Slideout */}
       {selectedEmployee && (
         <>
           <div
@@ -624,7 +619,6 @@ const Employees = ({ user }) => {
             </div>
 
             <div className="p-6 space-y-6">
-              {/* Employee Picture Placeholder */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 text-center">
                 <div className="w-32 h-32 mx-auto bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center mb-3">
                   {selectedEmployee.profile_picture ? (
@@ -642,12 +636,10 @@ const Employees = ({ user }) => {
                 </p>
               </div>
 
-              {/* General Details */}
               <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                 <h4 className="text-lg font-bold text-gray-800 mb-4">Employee Details</h4>
 
                 <div className="space-y-4">
-                  {/* First Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">
                       First Name
@@ -666,7 +658,6 @@ const Employees = ({ user }) => {
                     )}
                   </div>
 
-                  {/* Last Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">
                       Last Name
@@ -685,7 +676,6 @@ const Employees = ({ user }) => {
                     )}
                   </div>
 
-                  {/* Username */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">
                       Username
@@ -700,7 +690,6 @@ const Employees = ({ user }) => {
                     </p>
                   </div>
 
-                  {/* Email */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">
                       Email Address
@@ -721,7 +710,6 @@ const Employees = ({ user }) => {
                     )}
                   </div>
 
-                  {/* Phone */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">
                       Phone Number
@@ -742,7 +730,6 @@ const Employees = ({ user }) => {
                     )}
                   </div>
 
-                  {/* Role */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">Role</label>
                     {isEditing && !isAdmin(selectedEmployee) ? (
@@ -764,7 +751,6 @@ const Employees = ({ user }) => {
                     )}
                   </div>
 
-                  {/* BCode */}
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">
                       Business Codes
@@ -784,61 +770,53 @@ const Employees = ({ user }) => {
                             />
                             <span className="text-gray-700">
                               {business.bcode} - {business.business_name}
-                            </span>
-                          </label>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="flex flex-wrap gap-2">
-                        {selectedEmployee.bcode && selectedEmployee.bcode.length > 0 ? (
-                          selectedEmployee.bcode.map((code) => (
-                            <span
-                              key={code}
-                              className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium"
-                            >
-                              {code}
-                            </span>
-                          ))
-                        ) : (
-                          <p className="text-gray-500">No business codes assigned</p>
-                        )}
-                      </div>
-                    )}
-                    {isAdmin(selectedEmployee) && (
-                      <p className="text-xs text-gray-500 mt-1">
-                        Admin has access to all business codes
-                      </p>
-                    )}
-                  </div>
-
-                  {/* PTO Balance */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-600 mb-1">
-                      PTO Balance
-                    </label>
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                      <div className="flex items-center gap-3">
-                        <div className="text-3xl font-bold text-green-600">
-                          {selectedEmployee.pto_balance || 15}
-                        </div>
-                        <div className="text-gray-600">days remaining</div>
-                      </div>
+</span>
+</label>
+))}
+</div>
+) : (
+<div className="flex flex-wrap gap-2">
+{selectedEmployee.bcode && selectedEmployee.bcode.length > 0 ? (
+selectedEmployee.bcode.map((code) => (
+<span
+                           key={code}
+                           className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium"
+                         >
+{code}
+</span>
+))
+) : (
+<p className="text-gray-500">No business codes assigned</p>
+)}
+</div>
+)}
+{isAdmin(selectedEmployee) && (
+<p className="text-xs text-gray-500 mt-1">
+Admin has access to all business codes
+</p>
+)}
+</div>
+<div>
+                <label className="block text-sm font-medium text-gray-600 mb-1">
+                  PTO Balance
+                </label>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="text-3xl font-bold text-green-600">
+                      {selectedEmployee.pto_balance || 15}
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">PTO balance cannot be edited manually</p>
+                    <div className="text-gray-600">days remaining</div>
                   </div>
                 </div>
+                <p className="text-xs text-gray-500 mt-1">PTO balance cannot be edited manually</p>
               </div>
             </div>
           </div>
-        </>
-      )}
-    </div>
-  );
+        </div>
+      </div>
+    </>
+  )}
+</div>
+);
 };
-
-export default Employees;
-    </div>
-  );
-};
-
 export default Employees;

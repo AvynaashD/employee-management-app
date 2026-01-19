@@ -29,8 +29,9 @@ const Employees = ({ user }) => {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   useEffect(() => {
-    fetchData();
-  }, [user.tenantId]);
+  fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [user.tenantId]);
 
   const fetchData = async () => {
     setLoading(true);

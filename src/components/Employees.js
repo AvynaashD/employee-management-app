@@ -335,7 +335,9 @@ const Employees = ({ user }) => {
                     <td className="px-6 py-4 font-medium text-gray-800">{emp.last_name}</td>
                     <td className="px-6 py-4 text-gray-600">{emp.username}</td>
                     <td className="px-6 py-4 text-gray-600">
-                      {emp.bcode?.join(', ') || '-'}
+                      {Array.isArray(emp.bcode) 
+                        ? emp.bcode.join(', ') 
+                        : (emp.bcode || '-')}
                     </td>
                     <td className="px-6 py-4 text-gray-600">{emp.email || '-'}</td>
                     <td className="px-6 py-4 text-gray-600">{emp.phone}</td>
